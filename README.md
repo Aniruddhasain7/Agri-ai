@@ -1,10 +1,5 @@
 # 🌾 AgriAI — AI-Powered Smart Agriculture Platform
 
-[![Platform](https://img.shields.io/badge/Platform-AgriAI-10b981?style=for-the-badge&logo=sprout)](http://localhost:5173/)
-[![Frontend](https://img.shields.io/badge/Frontend-React_18_%7C_Vite-61DAFB?style=for-the-badge&logo=react)](https://vitejs.dev/)
-[![Backend](https://img.shields.io/badge/Backend-Flask_%7C_PyTorch-000000?style=for-the-badge&logo=flask)](https://flask.palletsprojects.com/)
-[![Deployment](https://img.shields.io/badge/Deploy-Vercel_%2B_Railway-black?style=for-the-badge&logo=vercel)](https://vercel.com)
-
 **AgriAI** is an advanced, full-stack smart farming Web Application designed to empower farmers and agricultural experts with real-time machine learning predictions, computer vision disease diagnosis, meteorological advisories, and multilingual AI consultation.
 
 ---
