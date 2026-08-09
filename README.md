@@ -9,6 +9,41 @@
 
 ---
 
+## 🌟 Key Features
+
+| Icon | Feature | Description | Engine / Model |
+| :---: | :--- | :--- | :--- |
+| 🍃 | **AI Leaf Disease Detection** | Upload or scan crop leaf photos using the **Live WebCam Camera Scanner** to detect plant diseases instantly with actionable treatment plans. | PyTorch MobileNetV2 Deep CNN |
+| 🌾 | **Crop Yield Prediction** | Predict harvest output in tonnes per hectare ($t/ha$) based on harvest area, rainfall, temperature, and crop type. | Scikit-Learn Random Forest Regressor (FAO Dataset) |
+| 🧪 | **Soil Nutrient Balancer** | Calculate optimal N-P-K & pH fertilizer ratios ($Urea$, $DAP$, $MOP$) and soil acidity amendments for selected crops. | Rule-based Soil Chemistry Balancer |
+| ☀️ | **Real-Time Weather Advisory** | Live meteorological forecasts with 3-day customized farming recommendations tailored to your location. | Live Weather API Integration |
+| 📈 | **Mandi Market Prices** | Track real-time crop commodity price trends across various Indian states and markets. | Real-Time Mandi Market Tracker |
+| 💬 | **Multilingual AI Assistant** | Instant 24/7 agricultural consultation in **English**, **Hindi (हिंदी)**, and **Bengali (বাংলা)**. | Multilingual LLM Advisory Engine |
+| 🌗 | **Adaptive Theme System** | Glassmorphic UI with automatic Light & Dark mode support and responsive mobile drawer navigation. | Vanilla CSS3 Variables & Glassmorphism |
+
+---
+
+## 🛠️ Technology Stack
+
+| Domain | Technology / Library | Version | Purpose & Usage |
+| :--- | :--- | :--- | :--- |
+| **Frontend Core** | React 18 | `v18.3.1` | Declarative component UI library |
+| **Build System** | Vite | `v8.2.1` | Ultra-fast frontend development server & bundler |
+| **Icons & UI** | Lucide React | `v0.453.0` | Modern, lightweight UI icon library |
+| **Internationalization** | i18next / react-i18next | `v23.16.2` | Multilingual support for English, Hindi, and Bengali |
+| **Routing** | React Router DOM | `v6.27.0` | Client-side Single Page Application (SPA) routing |
+| **Backend Core** | Flask | `v3.0.3` | Python micro-framework for modular RESTful API routes |
+| **Deep Learning** | PyTorch | `v2.4.0` | MobileNetV2 computer vision CNN model inference |
+| **Machine Learning** | Scikit-Learn | `v1.5.1` | Random Forest Crop Yield Regressor |
+| **Data Processing** | NumPy & Pandas | `v1.26.4 / v2.2.2` | Dataset transformations and array matrix calculations |
+| **Database ORM** | Flask-SQLAlchemy | `v3.1.1` | Object-Relational Mapper (SQLite locally, PostgreSQL in cloud) |
+| **Cloud Driver** | psycopg2-binary | `v2.9.9` | Production PostgreSQL Python database connector |
+| **Production Server** | Gunicorn | `v22.0.0` | High-performance Python WSGI HTTP server |
+| **Deployment (Backend)** | Railway | — | Flask API & PostgreSQL cloud hosting |
+| **Deployment (Frontend)** | Vercel | — | Static React SPA hosting with SPA fallback rewrites |
+
+---
+
 ## 🔄 System Architecture & Workflow
 
 ### 1. High-Level System Architecture
@@ -64,61 +99,6 @@ sequenceDiagram
     Frontend->>Backend: POST /api/chatbot/chat (Message JSON)
     Backend-->>Frontend: Stream intelligent agricultural advice
 ```
-
----
-
-## 🛠️ Core Feature Workflows
-
-### 🍃 A. AI Plant Disease Detection
-1. **Input Stage**: The user either uploads a leaf photo (PNG/JPG/WEBP) or uses the **Live WebCam Camera Scanner** with a real-time viewfinder target box.
-2. **Preprocessing**: Image tensor resized to $224 \times 224$, normalized with standard ImageNet mean & standard deviation vectors.
-3. **Inference**: Passed through a fine-tuned **MobileNetV2** deep convolutional neural network.
-4. **Output**: Returns disease classification, prediction confidence percentage, and customized biological/chemical treatment actions.
-
-### 🌾 B. Crop Yield Estimation
-1. **Input**: Country, Crop Type, Harvest Area ($ha$), Annual Rainfall ($mm$), Temperature ($^\circ C$), and Fertilizer input.
-2. **ML Engine**: Scikit-Learn **Random Forest Regressor** pre-trained on historic **FAO (Food and Agriculture Organization)** dataset records.
-3. **Output**: Yield output estimate in tonnes per hectare ($t/ha$) with comparative metrics.
-
-### 🧪 C. Soil Nutrient Balancing
-1. **Input**: Soil Nitrogen ($N$), Phosphorus ($P$), Potassium ($K$), and $pH$ acidity level.
-2. **Rule Engine**: Evaluates optimal target ranges for selected crop type.
-3. **Output**: Calculates specific fertilizer ratios ($Urea$, $DAP$, $MOP$) and lime/gypsum soil amendments.
-
-### 💬 D. Multilingual Advisory Chatbot
-1. **Input**: Text prompt in English, Hindi, or Bengali.
-2. **LLM Engine**: Context-aware prompt template tailored to regional crop conditions, weather risks, and pest control.
-3. **Output**: Returns localized advice in the user's native language.
-
----
-
-## 🌟 Key Features
-
-- 🍃 **AI Leaf Disease Detection**: Upload or scan crop leaf photos using the **Live WebCam Camera Scanner** to detect plant diseases instantly with MobileNetV2 computer vision and get actionable treatment plans.
-- 🌾 **Crop Yield Prediction**: Predict harvest yield ($t/ha$) powered by Random Forest ML models trained on real FAO agricultural datasets.
-- 🧪 **Soil & Fertilizer Balance**: Input Soil N-P-K & pH levels to calculate precise fertilizer ratios and soil health recommendations.
-- ☀️ **Real-time Weather Advisory**: Live meteorological forecasts with 3-day farming action plans tailored to your location.
-- 📈 **Mandi Market Prices**: Real-time commodity price tracking across states and markets.
-- 💬 **Multilingual AI Assistant**: Instant consultation in **English**, **Hindi (हिंदी)**, and **Bengali (বাংলা)**.
-- 🌗 **Theme Support**: Seamless Light & Dark mode glassmorphic UI.
-
----
-
-## 🛠️ Technology Stack
-
-### **Frontend**
-- **Framework**: React 18 (Vite)
-- **Styling**: Vanilla CSS3 (Custom Design System, Glassmorphism, Theme Variables)
-- **Icons**: Lucide React
-- **Internationalization**: i18next (English, Hindi, Bengali)
-- **Routing**: React Router v6
-
-### **Backend**
-- **Framework**: Flask (Python 3)
-- **Machine Learning**: PyTorch (MobileNetV2 Vision Model), Scikit-Learn (Random Forest Regressors)
-- **Database**: Flask-SQLAlchemy (Supports SQLite locally & PostgreSQL in production)
-- **Authentication**: Secure Session Tokens with PBKDF2 SHA-256 Password Hashing
-- **Production Server**: Gunicorn WSGI
 
 ---
 
