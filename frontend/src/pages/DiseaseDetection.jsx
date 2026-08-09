@@ -10,7 +10,6 @@ import {
   RefreshCw,
   Camera,
   X,
-  Aperture,
 } from "lucide-react";
 
 export default function DiseaseDetection() {
@@ -120,41 +119,12 @@ export default function DiseaseDetection() {
 
       <div className="glass-card">
         <form onSubmit={handleSubmit}>
-          {/* Action Trigger Bar: Upload vs Camera Scan */}
-          <div style={{ display: "flex", gap: "12px", marginBottom: "16px", flexWrap: "wrap" }}>
-            <button
-              type="button"
-              className="btn-secondary"
-              onClick={openCamera}
-              style={{ flex: 1, padding: "10px 16px", minHeight: "44px" }}
-            >
-              <Camera size={18} style={{ color: "var(--primary-500)" }} />
-              <span>Scan with Live Camera</span>
-            </button>
-
-            {/* Mobile native camera capture shortcut */}
-            <label
-              className="btn-secondary"
-              style={{ flex: 1, padding: "10px 16px", cursor: "pointer", minHeight: "44px" }}
-            >
-              <Aperture size={18} style={{ color: "var(--primary-500)" }} />
-              <span>Snap Photo (Camera)</span>
-              <input
-                type="file"
-                accept="image/*"
-                capture="environment"
-                style={{ display: "none" }}
-                onChange={(e) => handleFileSelect(e.target.files[0])}
-              />
-            </label>
-          </div>
-
           {/* Dropzone Container */}
           <div
             className={`dropzone ${preview ? "active" : ""}`}
             onDragOver={(e) => e.preventDefault()}
             onDrop={handleDrop}
-            onClick={() => document.getElementById("file-input").click()}
+            style={{ position: "relative", cursor: "pointer", padding: "32px 20px" }}
           >
             <input
               id="file-input"
@@ -193,7 +163,7 @@ export default function DiseaseDetection() {
                 </p>
               </div>
             ) : (
-              <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "12px" }}>
+              <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "16px" }}>
                 <div
                   style={{
                     width: "56px",
@@ -210,11 +180,31 @@ export default function DiseaseDetection() {
                 </div>
                 <div>
                   <p style={{ fontWeight: 700, fontSize: "16px", marginBottom: "4px" }}>
-                    Click or Drag & Drop leaf image here
+                    Click to select or drag & drop leaf image here
                   </p>
-                  <p style={{ fontSize: "13px", color: "var(--text-muted)" }}>
+                  <p style={{ fontSize: "13px", color: "var(--text-muted)", marginBottom: "12px" }}>
                     Supports PNG, JPG, JPEG, WEBP (up to 10 MB)
                   </p>
+                </div>
+
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "12px",
+                    marginTop: "4px",
+                  }}
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <button
+                    type="button"
+                    className="btn-secondary"
+                    onClick={openCamera}
+                    style={{ padding: "8px 18px", fontSize: "13.5px", width: "auto" }}
+                  >
+                    <Camera size={16} style={{ color: "var(--primary-500)" }} />
+                    <span>Scan with Camera</span>
+                  </button>
                 </div>
               </div>
             )}
