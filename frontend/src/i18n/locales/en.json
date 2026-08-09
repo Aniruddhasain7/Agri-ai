@@ -1,0 +1,37 @@
+{
+  "nav": {
+    "dashboard": "Dashboard",
+    "disease": "Disease Detection",
+    "yield": "Yield Prediction",
+    "weather": "Weather Advice",
+    "chatbot": "Chatbot",
+    "soil": "Soil Analysis",
+    "market": "Market Prices",
+    "crop": "Crop Recommendation"
+  },
+  "disease": {
+    "title": "Crop Disease Detection",
+    "upload_button": "Detect",
+    "analyzing": "Analyzing...",
+    "prediction_label": "Prediction",
+    "confidence_label": "Confidence",
+    "advice_label": "Recommended action"
+  },
+  "yield": {
+    "title": "Crop Yield Prediction",
+    "area_label": "Area (hectares)",
+    "rainfall_label": "Rainfall (mm)",
+    "temp_label": "Avg Temp (°C)",
+    "fertilizer_label": "Fertilizer (kg/ha)",
+    "submit": "Predict Yield"
+  },
+  "soil": {
+    "nitrogen_low": "Nitrogen is low — apply urea or ammonium sulfate.",
+    "nitrogen_high": "Nitrogen is high — reduce nitrogen fertilizer.",
+    "phosphorus_low": "Phosphorus is low — apply SSP or DAP.",
+    "potassium_low": "Potassium is low — apply muriate of potash (MOP).",
+    "ph_acidic": "Soil is acidic — apply agricultural lime.",
+    "ph_alkaline": "Soil is alkaline — apply gypsum or organic matter.",
+    "balanced": "N-P-K and pH levels look balanced for most crops."
+  }
+}

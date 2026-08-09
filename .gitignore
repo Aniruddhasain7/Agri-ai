@@ -1,0 +1,41 @@
+# Node & Frontend
+node_modules/
+frontend/node_modules/
+dist/
+frontend/dist/
+frontend/dist-ssr/
+*.local
+
+# Python & Virtual Environments
+__pycache__/
+backend/__pycache__/
+backend/*/__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.venv/
+env/
+ENV/
+
+# Environment Variables & Secrets
+.env
+backend/.env
+frontend/.env
+*.env.local
+
+# Databases & Local Data
+*.sqlite3
+agriai.db
+backend/agriai.db
+
+# ML Training Raw Datasets (Keeps GitHub Repo Lightweight)
+backend/ml_training/PlantVillage/
+backend/ml_training/crop_yield.csv
+
+# IDE & OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.swp
+*.log
