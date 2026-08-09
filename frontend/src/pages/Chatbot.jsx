@@ -175,7 +175,24 @@ export default function Chatbot() {
                   whiteSpace: "pre-wrap",
                 }}
               >
-                {m.text}
+                {typeof m.text === "string"
+                  ? m.text.split(/(\*\*.*?\*\*)/g).map((part, index) => {
+                      if (part.startsWith("**") && part.endsWith("**")) {
+                        return (
+                          <strong
+                            key={index}
+                            style={{
+                              fontWeight: 700,
+                              color: m.role === "user" ? "#ffffff" : "var(--primary-500)",
+                            }}
+                          >
+                            {part.slice(2, -2)}
+                          </strong>
+                        );
+                      }
+                      return part;
+                    })
+                  : m.text}
               </div>
 
               {m.role === "user" && (

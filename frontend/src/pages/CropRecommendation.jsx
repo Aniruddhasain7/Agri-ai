@@ -248,13 +248,12 @@ export default function CropRecommendation() {
 
         {result && result.recommended_crop && (
           <div
+            className="glass-card hero-card"
             style={{
               marginTop: "32px",
-              padding: "28px",
+              padding: "32px 28px",
               borderRadius: "var(--radius-md)",
-              background:
-                "radial-gradient(circle at 50% 0%, rgba(132, 204, 22, 0.2) 0%, rgba(6, 21, 16, 0.4) 100%)",
-              border: "1px solid var(--accent-lime)",
+              border: "1px solid var(--primary-500)",
               textAlign: "center",
             }}
           >
@@ -263,9 +262,9 @@ export default function CropRecommendation() {
                 display: "inline-flex",
                 alignItems: "center",
                 gap: "8px",
-                color: "var(--accent-lime)",
+                color: "var(--primary-500)",
                 fontWeight: 700,
-                fontSize: "14px",
+                fontSize: "15px",
                 marginBottom: "8px",
               }}
             >
@@ -284,10 +283,6 @@ export default function CropRecommendation() {
             >
               {result.recommended_crop}
             </h2>
-
-            <p style={{ fontSize: "14px", color: "var(--text-muted)", marginTop: "8px" }}>
-              Selected by model engine: <strong>{result.source}</strong>
-            </p>
           </div>
         )}
       </div>
