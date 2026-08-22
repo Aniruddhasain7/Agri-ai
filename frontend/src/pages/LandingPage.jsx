@@ -24,7 +24,6 @@ import {
   Home,
   Info,
   BookOpen,
-  GitBranch,
   HelpCircle,
   Compass,
 } from "lucide-react";
@@ -567,16 +566,6 @@ export default function LandingPage() {
                 )}
               </p>
 
-              <div className="footer-status-badge">
-                <span className="status-dot-pulse" />
-                <span>
-                  {t(
-                    "footer.status_operational",
-                    "All AI Diagnostics Operational",
-                  )}
-                </span>
-              </div>
-
               <div className="footer-social-wrapper">
                 <p className="footer-social-title">
                   {t("footer.connect_with_us", "Connect With Us")}
@@ -675,14 +664,8 @@ export default function LandingPage() {
                 <li className="footer-link-item">
                   <Link to="/dashboard" onClick={scrollToTop}>
                     <Sprout size={14} />
-                    <span>{t("footer.tools_dashboard", "Tools Dashboard")}</span>
-                  </Link>
-                </li>
-                <li className="footer-link-item">
-                  <Link to="/weather" onClick={scrollToTop}>
-                    <CloudSun size={14} />
                     <span>
-                      {t("footer.weather_advisory", "Weather Advisory")}
+                      {t("footer.tools_dashboard", "Tools Dashboard")}
                     </span>
                   </Link>
                 </li>
@@ -714,16 +697,6 @@ export default function LandingPage() {
                   </button>
                 </li>
                 <li className="footer-link-item">
-                  <a
-                    href="https://github.com/Aniruddhasain7/AgriAI"
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    <GitBranch size={14} />
-                    <span>{t("footer.github_repo", "GitHub Repo")}</span>
-                  </a>
-                </li>
-                <li className="footer-link-item">
                   <button onClick={() => setActiveModal("data")}>
                     <FileText size={14} />
                     <span>{t("footer.documentation", "Documentation")}</span>
@@ -748,12 +721,6 @@ export default function LandingPage() {
                   <button onClick={() => setActiveModal("terms")}>
                     <HelpCircle size={14} />
                     <span>{t("footer.faqs", "FAQs")}</span>
-                  </button>
-                </li>
-                <li className="footer-link-item">
-                  <button onClick={() => setActiveModal("terms")}>
-                    <FileText size={14} />
-                    <span>{t("footer.terms_use", "Terms & Use")}</span>
                   </button>
                 </li>
                 <li className="footer-link-item">
