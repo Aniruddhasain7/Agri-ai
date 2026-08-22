@@ -1,7 +1,3 @@
-"""
-Farmer Chatbot — powered by Google Gemini (google-genai SDK >= 2.0).
-Requires GEMINI_API_KEY in backend/.env
-"""
 import os
 from google import genai  # type: ignore[import-untyped]
 from google.genai import types  # type: ignore[import-untyped]
@@ -24,8 +20,6 @@ SYSTEM_INSTRUCTION = (
     "unrelated to agriculture, politely redirect to farming topics."
 )
 
-# In-memory session store: session_id → list of message dicts
-# Each message: {"role": "user"|"model", "parts": [str]}
 sessions: dict[str, list] = {}
 
 
@@ -43,7 +37,6 @@ def chat():
 
     client = _get_client()
 
-    # Bootstrap a new session with the system instruction priming exchange
     if session_id not in sessions:
         sessions[session_id] = [
             types.Content(role="user",  parts=[types.Part(text=SYSTEM_INSTRUCTION)]),
@@ -61,7 +54,6 @@ def chat():
         )
         reply = response.text
 
-        # Append to history for multi-turn conversation
         history.append(types.Content(role="user",  parts=[types.Part(text=prompt)]))
         history.append(types.Content(role="model", parts=[types.Part(text=reply)]))
     except Exception as e:

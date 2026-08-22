@@ -74,11 +74,10 @@ export default function YieldPrediction() {
 
   return (
     <div style={{ maxWidth: "800px", margin: "0 auto" }}>
-      {/* Page Header */}
       <div className="page-header">
         <div className="page-badge">
           <TrendingUp size={14} />
-          <span>Random Forest Regression</span>
+          <span>Harvest Yield Predictor</span>
         </div>
         <h1 className="page-title">Crop Yield Prediction</h1>
         <p className="page-subtitle">
@@ -95,7 +94,6 @@ export default function YieldPrediction() {
               gap: "20px",
             }}
           >
-            {/* Country / Area */}
             <div className="form-group">
               <label className="form-label">
                 <Globe size={16} /> Country / Region
@@ -112,7 +110,6 @@ export default function YieldPrediction() {
               </div>
             </div>
 
-            {/* Target Crop Item */}
             <div className="form-group">
               <label className="form-label">
                 <Sprout size={16} /> Crop Commodity
@@ -131,7 +128,6 @@ export default function YieldPrediction() {
               </select>
             </div>
 
-            {/* Year */}
             <div className="form-group">
               <label className="form-label">
                 <Calendar size={16} /> Target Harvest Year
@@ -148,7 +144,6 @@ export default function YieldPrediction() {
               </div>
             </div>
 
-            {/* Rainfall */}
             <div className="form-group">
               <label className="form-label">
                 <CloudRain size={16} /> Annual Rainfall (mm)
@@ -166,7 +161,6 @@ export default function YieldPrediction() {
               </div>
             </div>
 
-            {/* Pesticides */}
             <div className="form-group">
               <label className="form-label">
                 <ShieldAlert size={16} /> Pesticide Usage (tonnes)
@@ -184,7 +178,6 @@ export default function YieldPrediction() {
               </div>
             </div>
 
-            {/* Average Temperature */}
             <div className="form-group">
               <label className="form-label">
                 <Thermometer size={16} /> Average Temp (°C)
@@ -286,8 +279,6 @@ export default function YieldPrediction() {
               <span>Country: {result.area}</span>
               <span>•</span>
               <span>Crop: {result.item}</span>
-              <span>•</span>
-              <span>Model: {result.source}</span>
             </div>
           </div>
         )}

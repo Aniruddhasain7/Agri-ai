@@ -1,11 +1,3 @@
-"""
-Fine-tunes MobileNetV2 using PyTorch with GPU (RTX 3050 CUDA) acceleration.
-
-Dataset expected at: backend/ml_training/PlantVillage/PlantVillage/<class_name>/*.jpg
-Outputs:
-  - backend/models/disease_model.pth
-  - backend/models/class_indices.json
-"""
 import os
 import json
 import time
@@ -15,7 +7,7 @@ import torch.optim as optim  # type: ignore[import-untyped]
 from torch.utils.data import DataLoader, random_split  # type: ignore[import-untyped]
 from torchvision import datasets, transforms, models  # type: ignore[import-untyped]
 
-# ── Config ────────────────────────────────────────────────────────────────────
+
 BATCH_SIZE = 64
 EPOCHS = 5
 VAL_SPLIT = 0.2
@@ -28,7 +20,7 @@ torch.manual_seed(SEED)
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 print(f"Using device: {device} ({torch.cuda.get_device_name(0) if torch.cuda.is_available() else 'CPU'})")
 
-# ── Data Transformations ──────────────────────────────────────────────────────
+
 train_transform = transforms.Compose([
     transforms.Resize((224, 224)),
     transforms.RandomHorizontalFlip(),
@@ -43,7 +35,7 @@ val_transform = transforms.Compose([
     transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
 ])
 
-# ── Dataset Loading & Split ───────────────────────────────────────────────────
+
 dataset = datasets.ImageFolder(DATA_DIR, transform=train_transform)
 num_classes = len(dataset.classes)
 class_indices = dataset.class_to_idx
@@ -57,14 +49,11 @@ train_dataset, val_dataset = random_split(dataset, [train_size, val_size])
 val_loader = DataLoader(val_dataset, batch_size=BATCH_SIZE, shuffle=False, num_workers=0, pin_memory=True)
 train_loader = DataLoader(train_dataset, batch_size=BATCH_SIZE, shuffle=True, num_workers=0, pin_memory=True)
 
-# ── Model Definition (MobileNetV2 Transfer Learning) ─────────────────────────
 model = models.mobilenet_v2(weights=models.MobileNet_V2_Weights.DEFAULT)
 
-# Freeze backbone
 for param in model.parameters():
     param.requires_grad = False
 
-# Replace classifier head
 model.classifier = nn.Sequential(
     nn.Dropout(0.3),
     nn.Linear(model.last_channel, 128),
@@ -78,7 +67,7 @@ model = model.to(device)
 criterion = nn.CrossEntropyLoss()
 optimizer = optim.Adam(model.classifier.parameters(), lr=0.001)
 
-# ── Training Loop ─────────────────────────────────────────────────────────────
+
 print(f"\nStarting GPU training for {EPOCHS} epochs...\n")
 start_time = time.time()
 
@@ -105,7 +94,7 @@ for epoch in range(EPOCHS):
     train_acc = 100.0 * correct / total
     train_loss = running_loss / total
 
-    # Validation
+
     model.eval()
     val_loss = 0.0
     val_correct = 0
@@ -132,11 +121,9 @@ for epoch in range(EPOCHS):
 elapsed = time.time() - start_time
 print(f"\nTraining completed in {elapsed:.2f} seconds!")
 
-# ── Save Model & Class Index Mapping ──────────────────────────────────────────
+
 os.makedirs("../models", exist_ok=True)
 torch.save(model.state_dict(), MODEL_SAVE_PATH)
 
 with open(CLASS_INDEX_PATH, "w") as f:
     json.dump(class_indices, f, indent=2)
-
-print(f"Saved PyTorch model to {MODEL_SAVE_PATH} and class_indices.json to {CLASS_INDEX_PATH}")

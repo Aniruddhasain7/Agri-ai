@@ -21,16 +21,20 @@ ENV/
 .env
 backend/.env
 frontend/.env
+frontend/.env.local
 *.env.local
 
 # Databases & Local Data
-*.sqlite3
-agriai.db
-backend/agriai.db
 
-# ML Training Raw Datasets (Keeps GitHub Repo Lightweight)
+# ML Training Raw Datasets
 backend/ml_training/PlantVillage/
 backend/ml_training/crop_yield.csv
+
+# PyTorch model (converted to ONNX — .onnx file is committed instead)
+backend/models/disease_model.pth
+
+# One-time local utility scripts
+backend/convert_to_onnx.py
 
 # IDE & OS
 .vscode/

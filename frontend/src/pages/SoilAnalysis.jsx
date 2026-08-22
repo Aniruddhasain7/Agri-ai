@@ -54,7 +54,6 @@ export default function SoilAnalysis() {
 
   return (
     <div style={{ maxWidth: "780px", margin: "0 auto" }}>
-      {/* Header Banner */}
       <div className="page-header">
         <div className="page-badge">
           <FlaskConical size={14} />
@@ -75,7 +74,6 @@ export default function SoilAnalysis() {
               gap: "20px",
             }}
           >
-            {/* Nitrogen (N) */}
             <div className="form-group">
               <label className="form-label">
                 <Layers size={16} style={{ color: "var(--primary-500)" }} />
@@ -94,7 +92,6 @@ export default function SoilAnalysis() {
               </div>
             </div>
 
-            {/* Phosphorus (P) */}
             <div className="form-group">
               <label className="form-label">
                 <TestTube size={16} style={{ color: "#3b82f6" }} />
@@ -113,7 +110,6 @@ export default function SoilAnalysis() {
               </div>
             </div>
 
-            {/* Potassium (K) */}
             <div className="form-group">
               <label className="form-label">
                 <FlaskConical size={16} style={{ color: "#f59e0b" }} />
@@ -132,7 +128,6 @@ export default function SoilAnalysis() {
               </div>
             </div>
 
-            {/* pH Value */}
             <div className="form-group">
               <label className="form-label">
                 <Info size={16} style={{ color: "var(--accent-lime)" }} />

@@ -1,11 +1,17 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="light">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/png" href="/logo.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="AgriAI — AI-powered tools for smarter farming: disease detection, yield prediction, weather advice, soil analysis, and more." />
     <title>AgriAI — Smart Farming Platform</title>
+    <script>
+      (function() {
+        var savedTheme = localStorage.getItem("agri_theme");
+        document.documentElement.setAttribute("data-theme", savedTheme || "light");
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

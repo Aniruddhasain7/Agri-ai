@@ -22,7 +22,6 @@ export default function SignupPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  // If user is already logged in, redirect straight to dashboard
   useEffect(() => {
     const token = localStorage.getItem("agriai_token");
     if (token) {
@@ -66,7 +65,6 @@ export default function SignupPage() {
         alignItems: "center",
       }}
     >
-      {/* Left Info Panel */}
       <div style={{ textAlign: "left" }}>
         <div className="page-badge">
           <ShieldCheck size={14} />
@@ -136,7 +134,6 @@ export default function SignupPage() {
         </div>
       </div>
 
-      {/* Right Signup Glass Card */}
       <div className="glass-card" style={{ padding: "36px" }}>
         <h2
           style={{ fontSize: "24px", marginBottom: "8px", textAlign: "left" }}

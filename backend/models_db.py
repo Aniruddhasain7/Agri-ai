@@ -18,6 +18,17 @@ class User(db.Model):
     disease_logs = db.relationship("DiseaseHistory", backref="user", lazy=True)
     prediction_logs = db.relationship("PredictionHistory", backref="user", lazy=True)
 
+    def __init__(self, name=None, email=None, farm_type="Grain & Crops", password_hash=None, **kwargs):
+        super().__init__(**kwargs)
+        if name is not None:
+            self.name = name
+        if email is not None:
+            self.email = email
+        if farm_type is not None:
+            self.farm_type = farm_type
+        if password_hash is not None:
+            self.password_hash = password_hash
+
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
 
@@ -45,6 +56,19 @@ class DiseaseHistory(db.Model):
     recommended_action = db.Column(db.Text, nullable=True)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
+    def __init__(self, user_id=None, filename="", prediction="", confidence_percent=0.0, recommended_action="", **kwargs):
+        super().__init__(**kwargs)
+        if user_id is not None:
+            self.user_id = user_id
+        if filename:
+            self.filename = filename
+        if prediction:
+            self.prediction = prediction
+        if confidence_percent:
+            self.confidence_percent = confidence_percent
+        if recommended_action:
+            self.recommended_action = recommended_action
+
     def to_dict(self):
         return {
             "id": self.id,
@@ -62,10 +86,21 @@ class PredictionHistory(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=True)
-    tool_type = db.Column(db.String(50), nullable=False)  # 'yield', 'soil', 'crop', 'market'
-    input_data = db.Column(db.Text, nullable=False)        # JSON payload
-    result_data = db.Column(db.Text, nullable=False)       # JSON result
+    tool_type = db.Column(db.String(50), nullable=False)
+    input_data = db.Column(db.Text, nullable=False)
+    result_data = db.Column(db.Text, nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
+
+    def __init__(self, user_id=None, tool_type="", input_data="", result_data="", **kwargs):
+        super().__init__(**kwargs)
+        if user_id is not None:
+            self.user_id = user_id
+        if tool_type:
+            self.tool_type = tool_type
+        if input_data:
+            self.input_data = input_data
+        if result_data:
+            self.result_data = result_data
 
     def to_dict(self):
         return {

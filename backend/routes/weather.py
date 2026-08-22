@@ -1,6 +1,3 @@
-"""
-Weather-based Farming Advice — live data from Open-Meteo (no API key required).
-"""
 import requests
 from flask import Blueprint, request, jsonify
 

@@ -12,7 +12,6 @@ import SoilAnalysis from "./pages/SoilAnalysis";
 import MarketPrices from "./pages/MarketPrices";
 import CropRecommendation from "./pages/CropRecommendation";
 
-// Protected Route Component Wrapper
 function ProtectedRoute({ children }) {
   const token = localStorage.getItem("agriai_token");
   const user = localStorage.getItem("agriai_user");
@@ -24,16 +23,14 @@ function ProtectedRoute({ children }) {
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
       <Navbar />
       <main className="main-content">
         <Routes>
-          {/* Public Landing & Authentication Routes */}
           <Route path="/" element={<LandingPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
 
-          {/* Protected Application Tools & Dashboard Routes */}
           <Route
             path="/dashboard"
             element={
@@ -99,7 +96,6 @@ export default function App() {
             }
           />
 
-          {/* Fallback route */}
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </main>

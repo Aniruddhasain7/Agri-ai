@@ -55,7 +55,6 @@ export default function Chatbot() {
 
   return (
     <div style={{ maxWidth: "860px", margin: "0 auto" }}>
-      {/* Header Banner */}
       <div className="page-header">
         <div className="page-badge">
           <Bot size={14} />
@@ -67,12 +66,11 @@ export default function Chatbot() {
         </p>
       </div>
 
-      <div className="glass-card" style={{ padding: "0", overflow: "hidden", display: "flex", flexDirection: "column", height: "620px" }}>
-        {/* Chat Messages Container */}
+      <div className="glass-card" style={{ padding: "0", overflow: "hidden", display: "flex", flexDirection: "column", height: "min(620px, calc(100vh - 200px))", minHeight: "420px" }}>
         <div
           style={{
             flex: 1,
-            padding: "24px",
+            padding: "20px 16px",
             overflowY: "auto",
             display: "flex",
             flexDirection: "column",
@@ -102,7 +100,6 @@ export default function Chatbot() {
                 Select a suggested topic below or type your question in the box to get started.
               </p>
 
-              {/* Prompt Suggestions Chips */}
               <div style={{ display: "flex", flexWrap: "wrap", gap: "8px", justifyContent: "center" }}>
                 {PROMPT_SUGGESTIONS.map((suggestion, idx) => (
                   <button
@@ -253,15 +250,15 @@ export default function Chatbot() {
           <div ref={chatEndRef} />
         </div>
 
-        {/* Chat Input Bar */}
         <div
           style={{
-            padding: "16px 20px",
+            padding: "14px 16px",
             background: "var(--bg-card)",
             borderTop: "1px solid var(--border-color)",
             display: "flex",
-            gap: "12px",
+            gap: "10px",
             alignItems: "center",
+            width: "100%",
           }}
         >
           <input
@@ -270,20 +267,22 @@ export default function Chatbot() {
             onKeyDown={(e) => e.key === "Enter" && sendMessage()}
             placeholder="Ask anything about farming, crops, fertilizer, pest control..."
             style={{
-              flex: 1,
+              flex: "1 1 0%",
+              minWidth: "0",
               padding: "12px 16px",
               background: "var(--bg-input)",
               border: "1.5px solid var(--border-color)",
               borderRadius: "var(--radius-full)",
               color: "var(--text-main)",
-              fontSize: "15px",
+              fontSize: "14.5px",
               outline: "none",
             }}
           />
           <button
             onClick={() => sendMessage()}
             disabled={loading || !input.trim()}
-            className="btn-primary"
+            className="btn-primary btn-icon"
+            aria-label="Send message"
             style={{
               width: "48px",
               height: "48px",

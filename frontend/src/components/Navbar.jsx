@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import {
   LayoutDashboard,
@@ -9,6 +9,7 @@ import {
   User as UserIcon,
   Menu,
   X,
+  ArrowLeft,
 } from "lucide-react";
 import { useState } from "react";
 import LanguageSwitcher from "./LanguageSwitcher";
@@ -26,11 +27,13 @@ const getStoredUser = () => {
 export default function Navbar() {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const location = useLocation();
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const user = getStoredUser();
   const token = localStorage.getItem("agriai_token");
   const isAuthenticated = Boolean(user && token);
+  const isDashboard = location.pathname === "/dashboard" || location.pathname === "/";
 
   const handleLogout = () => {
     localStorage.removeItem("agriai_token");
@@ -62,7 +65,6 @@ export default function Navbar() {
           gap: "12px",
         }}
       >
-        {/* Left Side: Brand Logo (+ Dashboard Button ONLY when authenticated) */}
         <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
           <Link
             to={isAuthenticated ? "/dashboard" : "/"}
@@ -105,42 +107,65 @@ export default function Navbar() {
             </span>
           </Link>
 
-          {isAuthenticated && (
-            <div className="desktop-only" style={{ display: "flex", alignItems: "center", gap: "16px" }}>
-              <div
-                style={{
-                  width: "1px",
-                  height: "22px",
-                  background: "var(--border-color)",
-                }}
-              />
-
-              <nav style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-                <Link
-                  to="/dashboard"
+          {isAuthenticated && !isDashboard && (
+            <>
+              <div className="desktop-only" style={{ display: "flex", alignItems: "center", gap: "16px" }}>
+                <div
                   style={{
-                    display: "inline-flex",
-                    alignItems: "center",
-                    gap: "6px",
-                    padding: "6px 14px",
-                    borderRadius: "var(--radius-sm)",
-                    textDecoration: "none",
-                    fontSize: "13.5px",
-                    fontWeight: 600,
-                    color: "var(--primary-500)",
-                    background: "rgba(16, 185, 129, 0.12)",
-                    border: "1px solid rgba(16, 185, 129, 0.25)",
+                    width: "1px",
+                    height: "22px",
+                    background: "var(--border-color)",
                   }}
-                >
-                  <LayoutDashboard size={15} />
-                  <span>{t("nav.dashboard")}</span>
-                </Link>
-              </nav>
-            </div>
+                />
+
+                <nav style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                  <Link
+                    to="/dashboard"
+                    style={{
+                      display: "inline-flex",
+                      alignItems: "center",
+                      gap: "6px",
+                      padding: "6px 14px",
+                      borderRadius: "var(--radius-sm)",
+                      textDecoration: "none",
+                      fontSize: "13.5px",
+                      fontWeight: 600,
+                      color: "var(--primary-500)",
+                      background: "rgba(16, 185, 129, 0.12)",
+                      border: "1px solid rgba(16, 185, 129, 0.25)",
+                      transition: "all 0.2s ease",
+                    }}
+                  >
+                    <ArrowLeft size={15} />
+                    <span>{t("nav.dashboard")}</span>
+                  </Link>
+                </nav>
+              </div>
+
+              <Link
+                to="/dashboard"
+                aria-label="Back to Dashboard"
+                className="mobile-only"
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  width: "34px",
+                  height: "34px",
+                  borderRadius: "var(--radius-sm)",
+                  textDecoration: "none",
+                  color: "var(--primary-500)",
+                  background: "rgba(16, 185, 129, 0.12)",
+                  border: "1px solid rgba(16, 185, 129, 0.25)",
+                  flexShrink: 0,
+                }}
+              >
+                <ArrowLeft size={16} />
+              </Link>
+            </>
           )}
         </div>
 
-        {/* Right Side: Desktop Controls & Mobile Hamburger Trigger */}
         <div style={{ display: "flex", alignItems: "center", gap: "10px", flexShrink: 0 }}>
           {isAuthenticated && (
             <div className="desktop-only">
@@ -149,7 +174,6 @@ export default function Navbar() {
           )}
           <ThemeToggle />
 
-          {/* Desktop User / Auth Links */}
           <div className="desktop-only">
             {isAuthenticated ? (
               <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
@@ -168,12 +192,12 @@ export default function Navbar() {
                   }}
                 >
                   <UserIcon size={15} style={{ color: "var(--primary-500)" }} />
-                  <span>{user?.name || "Farmer"}</span>
+                  <span>{user?.name || t("nav.farmer", "Farmer")}</span>
                 </div>
 
                 <button
                   onClick={handleLogout}
-                  title="Log Out"
+                  title={t("nav.logout", "Log Out")}
                   style={{
                     display: "inline-flex",
                     alignItems: "center",
@@ -189,7 +213,7 @@ export default function Navbar() {
                   }}
                 >
                   <LogOut size={15} />
-                  <span>Log Out</span>
+                  <span>{t("nav.logout", "Log Out")}</span>
                 </button>
               </div>
             ) : (
@@ -211,7 +235,7 @@ export default function Navbar() {
                   }}
                 >
                   <LogIn size={15} />
-                  <span>Log In</span>
+                  <span>{t("nav.login", "Log In")}</span>
                 </Link>
 
                 <Link
@@ -232,13 +256,12 @@ export default function Navbar() {
                   }}
                 >
                   <UserPlus size={15} />
-                  <span>Sign Up</span>
+                  <span>{t("nav.signup", "Sign Up")}</span>
                 </Link>
               </div>
             )}
           </div>
 
-          {/* Mobile Hamburger Button */}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label="Toggle menu"
@@ -260,7 +283,6 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Navigation Drawer */}
       {mobileOpen && (
         <div
           style={{
@@ -286,7 +308,7 @@ export default function Navbar() {
               >
                 <div style={{ display: "flex", alignItems: "center", gap: "8px", fontWeight: 700 }}>
                   <UserIcon size={16} style={{ color: "var(--primary-500)" }} />
-                  <span>{user?.name || "Farmer"}</span>
+                  <span>{user?.name || t("nav.farmer", "Farmer")}</span>
                 </div>
                 <LanguageSwitcher />
               </div>
@@ -298,7 +320,7 @@ export default function Navbar() {
                 style={{ justifyContent: "flex-start", padding: "12px 16px" }}
               >
                 <LayoutDashboard size={18} />
-                <span>Go to Dashboard</span>
+                <span>{t("nav.go_dashboard", "Go to Dashboard")}</span>
               </Link>
 
               <button
@@ -319,7 +341,7 @@ export default function Navbar() {
                 }}
               >
                 <LogOut size={18} />
-                <span>Log Out</span>
+                <span>{t("nav.logout", "Log Out")}</span>
               </button>
             </>
           ) : (
@@ -331,7 +353,7 @@ export default function Navbar() {
                 style={{ width: "100%" }}
               >
                 <LogIn size={18} />
-                <span>Log In</span>
+                <span>{t("nav.login", "Log In")}</span>
               </Link>
 
               <Link
@@ -341,14 +363,13 @@ export default function Navbar() {
                 style={{ width: "100%" }}
               >
                 <UserPlus size={18} />
-                <span>Create Free Account</span>
+                <span>{t("nav.signup", "Sign Up")}</span>
               </Link>
             </div>
           )}
         </div>
       )}
 
-      {/* Responsive Breakpoints CSS */}
       <style>{`
         @media (min-width: 769px) {
           .mobile-only { display: none !important; }

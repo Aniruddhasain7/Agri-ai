@@ -46,7 +46,6 @@ export default function MarketPrices() {
 
   return (
     <div style={{ maxWidth: "820px", margin: "0 auto" }}>
-      {/* Header */}
       <div className="page-header">
         <div className="page-badge">
           <LineChart size={14} />
@@ -59,7 +58,6 @@ export default function MarketPrices() {
       </div>
 
       <div className="glass-card">
-        {/* Crop Selection Pills */}
         <div style={{ marginBottom: "24px", textAlign: "left" }}>
           <label className="form-label" style={{ marginBottom: "12px" }}>
             <Coins size={16} /> Select Agricultural Commodity
@@ -135,7 +133,6 @@ export default function MarketPrices() {
                 <p style={{ fontSize: "13px", color: "var(--text-muted)" }}>Unit: {result.unit}</p>
               </div>
 
-              {/* Next Day Forecast Card */}
               <div
                 style={{
                   background: "rgba(16, 185, 129, 0.15)",
@@ -159,62 +156,64 @@ export default function MarketPrices() {
               </div>
             </div>
 
-            {/* Visual Bar Chart */}
             <h4 style={{ fontSize: "14px", fontWeight: 700, marginBottom: "16px", color: "var(--text-muted)" }}>
               7-Day Price History (INR / Quintal)
             </h4>
 
-            <div
-              style={{
-                display: "flex",
-                alignItems: "flex-end",
-                gap: "12px",
-                height: "180px",
-                padding: "16px",
-                background: "var(--bg-input)",
-                border: "1px solid var(--border-color)",
-                borderRadius: "var(--radius-sm)",
-              }}
-            >
-              {result.last_7_day_trend.map((val, idx) => {
-                const maxVal = Math.max(...result.last_7_day_trend);
-                const minVal = Math.min(...result.last_7_day_trend);
-                const heightPercent = Math.max(25, ((val - minVal * 0.9) / (maxVal - minVal * 0.9)) * 100);
+            <div className="chart-scroll-container">
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "flex-end",
+                  gap: "12px",
+                  height: "190px",
+                  minWidth: "480px",
+                  padding: "16px",
+                  background: "var(--bg-input)",
+                  border: "1px solid var(--border-color)",
+                  borderRadius: "var(--radius-sm)",
+                }}
+              >
+                {result.last_7_day_trend.map((val, idx) => {
+                  const maxVal = Math.max(...result.last_7_day_trend);
+                  const minVal = Math.min(...result.last_7_day_trend);
+                  const heightPercent = Math.max(25, ((val - minVal * 0.9) / (maxVal - minVal * 0.9)) * 100);
 
-                return (
-                  <div
-                    key={idx}
-                    style={{
-                      flex: 1,
-                      display: "flex",
-                      flexDirection: "column",
-                      alignItems: "center",
-                      gap: "8px",
-                      height: "100%",
-                      justifyContent: "flex-end",
-                    }}
-                  >
-                    <span style={{ fontSize: "11px", fontWeight: 700, color: "var(--text-muted)" }}>
-                      ₹{val}
-                    </span>
+                  return (
                     <div
+                      key={idx}
                       style={{
-                        width: "100%",
-                        height: `${heightPercent}%`,
-                        background:
-                          idx === result.last_7_day_trend.length - 1
-                            ? "linear-gradient(180deg, var(--accent-lime) 0%, var(--primary-500) 100%)"
-                            : "linear-gradient(180deg, var(--primary-500) 0%, var(--primary-700) 100%)",
-                        borderRadius: "6px 6px 0 0",
-                        transition: "height 0.5s ease",
+                        flex: 1,
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "center",
+                        gap: "8px",
+                        height: "100%",
+                        justifyContent: "flex-end",
                       }}
-                    />
-                    <span style={{ fontSize: "12px", color: "var(--text-light)" }}>
-                      Day {idx + 1}
-                    </span>
-                  </div>
-                );
-              })}
+                    >
+                      <span style={{ fontSize: "11px", fontWeight: 700, color: "var(--text-muted)", whiteSpace: "nowrap" }}>
+                        ₹{val}
+                      </span>
+                      <div
+                        style={{
+                          width: "100%",
+                          height: `${heightPercent}%`,
+                          background:
+                            idx === result.last_7_day_trend.length - 1
+                              ? "linear-gradient(180deg, var(--accent-lime) 0%, var(--primary-500) 100%)"
+                              : "linear-gradient(180deg, var(--primary-500) 0%, var(--primary-700) 100%)",
+                          borderRadius: "6px 6px 0 0",
+                          transition: "height 0.5s ease",
+                        }}
+                      />
+                      <span style={{ fontSize: "12px", color: "var(--text-light)", whiteSpace: "nowrap" }}>
+                        Day {idx + 1}
+                      </span>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
           </div>
         )}

@@ -1,6 +1,3 @@
-"""
-Market Price Prediction — deterministic mock trend around a base price.
-"""
 import random
 from flask import Blueprint, request, jsonify
 

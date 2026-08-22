@@ -60,11 +60,10 @@ export default function CropRecommendation() {
 
   return (
     <div style={{ maxWidth: "820px", margin: "0 auto" }}>
-      {/* Header Banner */}
       <div className="page-header">
         <div className="page-badge">
           <Sprout size={14} />
-          <span>Random Forest Crop Matcher</span>
+          <span>Optimal Crop Matcher</span>
         </div>
         <h1 className="page-title">Smart Crop Recommendation</h1>
         <p className="page-subtitle">
@@ -81,7 +80,6 @@ export default function CropRecommendation() {
               gap: "20px",
             }}
           >
-            {/* Nitrogen */}
             <div className="form-group">
               <label className="form-label">
                 <Layers size={16} style={{ color: "var(--primary-500)" }} />
@@ -100,7 +98,6 @@ export default function CropRecommendation() {
               </div>
             </div>
 
-            {/* Phosphorus */}
             <div className="form-group">
               <label className="form-label">
                 <TestTube size={16} style={{ color: "#3b82f6" }} />
@@ -119,7 +116,6 @@ export default function CropRecommendation() {
               </div>
             </div>
 
-            {/* Potassium */}
             <div className="form-group">
               <label className="form-label">
                 <FlaskConical size={16} style={{ color: "#f59e0b" }} />
@@ -138,7 +134,6 @@ export default function CropRecommendation() {
               </div>
             </div>
 
-            {/* Temperature */}
             <div className="form-group">
               <label className="form-label">
                 <Thermometer size={16} style={{ color: "#ef4444" }} />
@@ -158,7 +153,6 @@ export default function CropRecommendation() {
               </div>
             </div>
 
-            {/* Humidity */}
             <div className="form-group">
               <label className="form-label">
                 <Droplets size={16} style={{ color: "#0ea5e9" }} />
@@ -178,7 +172,6 @@ export default function CropRecommendation() {
               </div>
             </div>
 
-            {/* pH */}
             <div className="form-group">
               <label className="form-label">
                 <Info size={16} style={{ color: "var(--accent-lime)" }} />
@@ -198,7 +191,6 @@ export default function CropRecommendation() {
               </div>
             </div>
 
-            {/* Rainfall */}
             <div className="form-group">
               <label className="form-label">
                 <CloudRain size={16} style={{ color: "var(--primary-400)" }} />

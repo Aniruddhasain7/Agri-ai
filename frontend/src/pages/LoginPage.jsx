@@ -10,7 +10,6 @@ export default function LoginPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  // If user is already logged in, redirect straight to dashboard
   useEffect(() => {
     const token = localStorage.getItem("agriai_token");
     if (token) {
@@ -53,11 +52,10 @@ export default function LoginPage() {
         alignItems: "center",
       }}
     >
-      {/* Left Info Panel */}
       <div style={{ textAlign: "left" }}>
         <div className="page-badge">
           <ShieldCheck size={14} />
-          <span>Secure SQLite Database Portal</span>
+          <span>Secure Smart Farming Portal</span>
         </div>
         <h1
           style={{
@@ -96,7 +94,6 @@ export default function LoginPage() {
         </div>
       </div>
 
-      {/* Right Login Glass Card */}
       <div className="glass-card" style={{ padding: "36px" }}>
         <h2 style={{ fontSize: "24px", marginBottom: "8px", textAlign: "left" }}>
           Account Login

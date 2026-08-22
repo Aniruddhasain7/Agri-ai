@@ -52,11 +52,10 @@ export default function WeatherAdvice() {
 
   return (
     <div style={{ maxWidth: "800px", margin: "0 auto" }}>
-      {/* Header */}
       <div className="page-header">
         <div className="page-badge">
           <CloudSun size={14} />
-          <span>Open-Meteo Live Service</span>
+          <span>Live Weather Insights</span>
         </div>
         <h1 className="page-title">Weather-Based Farming Advice</h1>
         <p className="page-subtitle">
@@ -98,7 +97,6 @@ export default function WeatherAdvice() {
           <div style={{ textAlign: "left", marginTop: "24px" }}>
             <h3 style={{ fontSize: "18px", marginBottom: "16px" }}>Current Live Conditions</h3>
 
-            {/* Metrics Grid */}
             <div
               style={{
                 display: "grid",
@@ -107,7 +105,6 @@ export default function WeatherAdvice() {
                 marginBottom: "32px",
               }}
             >
-              {/* Temperature */}
               <div
                 style={{
                   background: "var(--bg-input)",
@@ -133,7 +130,6 @@ export default function WeatherAdvice() {
                 </p>
               </div>
 
-              {/* Humidity */}
               <div
                 style={{
                   background: "var(--bg-input)",
@@ -159,7 +155,6 @@ export default function WeatherAdvice() {
                 </p>
               </div>
 
-              {/* Rain */}
               <div
                 style={{
                   background: "var(--bg-input)",
@@ -185,7 +180,6 @@ export default function WeatherAdvice() {
                 </p>
               </div>
 
-              {/* Wind */}
               <div
                 style={{
                   background: "var(--bg-input)",
@@ -212,7 +206,6 @@ export default function WeatherAdvice() {
               </div>
             </div>
 
-            {/* Farming Advice Checklist */}
             <h3 style={{ fontSize: "18px", marginBottom: "16px" }}>Farming Recommendations</h3>
             <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
               {result.farming_advice.map((tip, i) => (

@@ -3,7 +3,7 @@ import { Sun, Moon } from "lucide-react";
 
 export default function ThemeToggle() {
   const [theme, setTheme] = useState(() => {
-    return localStorage.getItem("agri_theme") || "dark";
+    return localStorage.getItem("agri_theme") || "light";
   });
 
   useEffect(() => {

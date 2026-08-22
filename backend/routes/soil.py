@@ -1,9 +1,18 @@
-"""
-Soil Analysis & Fertilizer Recommendation — rule-based thresholds on N-P-K + pH.
-"""
+import json
 from flask import Blueprint, request, jsonify
+from models_db import db, PredictionHistory
 
 soil_bp = Blueprint("soil", __name__)
+
+
+def get_user_id_from_header():
+    auth_header = request.headers.get("Authorization", "")
+    if auth_header.startswith("Bearer agriai_token_"):
+        try:
+            return int(auth_header.replace("Bearer agriai_token_", "").strip())
+        except (ValueError, TypeError):
+            return None
+    return None
 
 
 def recommend(n, p, k, ph):
@@ -38,7 +47,24 @@ def soil_recommend():
     except (ValueError, TypeError):
         return jsonify({"error": "All fields must be numeric."}), 400
 
-    return jsonify({
+    recommendations = recommend(n, p, k, ph)
+    res_payload = {
         "inputs": {"nitrogen": n, "phosphorus": p, "potassium": k, "ph": ph},
-        "recommendations": recommend(n, p, k, ph),
-    })
+        "recommendations": recommendations,
+    }
+
+    user_id = get_user_id_from_header()
+    try:
+        log_entry = PredictionHistory(
+            user_id=user_id,
+            tool_type="soil_recommendation",
+            input_data=json.dumps(res_payload["inputs"]),
+            result_data=json.dumps({"recommendations": recommendations}),
+        )
+        db.session.add(log_entry)
+        db.session.commit()
+    except Exception as err:
+        db.session.rollback()
+        print("Failed to save soil recommendation log:", err)
+
+    return jsonify(res_payload)
