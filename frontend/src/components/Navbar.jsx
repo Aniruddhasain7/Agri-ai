@@ -9,6 +9,7 @@ import {
   User as UserIcon,
   Menu,
   X,
+  ArrowLeft,
 } from "lucide-react";
 import { useState } from "react";
 import LanguageSwitcher from "./LanguageSwitcher";
